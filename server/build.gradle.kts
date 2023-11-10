@@ -1,6 +1,8 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
+val mongodb_version: String by project
+val coroutines_version: String by project
 
 plugins {
     kotlin("jvm") version "1.9.20"
@@ -22,7 +24,14 @@ repositories {
 }
 
 dependencies {
+    //Serialization
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
+    // Kotlin coroutine dependency
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+
+    // MongoDB Kotlin driver dependency
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:$mongodb_version")
 
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
