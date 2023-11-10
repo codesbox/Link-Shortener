@@ -22,6 +22,8 @@ repositories {
 }
 
 dependencies {
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-server-netty-jvm")
