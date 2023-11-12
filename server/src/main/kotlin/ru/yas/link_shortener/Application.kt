@@ -1,5 +1,6 @@
 package ru.yas.link_shortener
 
+import com.mongodb.kotlin.client.coroutine.MongoClient
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -11,6 +12,10 @@ fun main() {
 }
 
 fun Application.module() {
-    configureRouting()
+
+    val client = MongoClient.create(connectionString = System.getenv("MONGODB_URI"))
+    val database = client.getDatabase("Link-Shortener")
+
+    configureRouting(database)
     configureSerialization()
 }
