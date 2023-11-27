@@ -1,10 +1,11 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    kotlin("plugin.serialization").version("1.9.20")
 }
 
 kotlin {
@@ -19,15 +20,21 @@ kotlin {
     jvm("desktop")
     
     sourceSets {
+        val ktorVersion = "2.3.5"
+        val coroutinesVersion = "1.7.3"
         val desktopMain by getting
         
         androidMain.dependencies {
             implementation(libs.compose.ui)
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.ktor.client.android)
+            implementation(libs.kotlinx.coroutines.core)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.ktor.client.desktop)
+            implementation(libs.kotlinx.coroutines.core)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -35,6 +42,14 @@ kotlin {
             implementation(compose.material3)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+
+            implementation(libs.kotlinx.coroutines.core)
         }
     }
 }
