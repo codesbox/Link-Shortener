@@ -15,7 +15,7 @@ fun main() = application {
                 modifier = Modifier.fillMaxSize(),
                 color = MaterialTheme.colorScheme.background
             ){
-                App()
+                App(KtorClient.client)
             }
         }
     }
@@ -24,5 +24,5 @@ fun main() = application {
 @Preview
 @Composable
 fun AppDesktopPreview() {
-    App()
+    App(KtorClient.client)
 }

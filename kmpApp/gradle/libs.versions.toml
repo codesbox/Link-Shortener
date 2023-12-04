@@ -1,8 +1,8 @@
 [versions]
 compose = "1.5.4"
-compose-plugin = "1.5.10"
+compose-plugin = "1.5.10-dev-wasm03"
 compose-compiler = "1.5.4"
-agp = "8.1.4"
+agp = "8.2.0"
 android-minSdk = "24"
 android-compileSdk = "34"
 android-targetSdk = "34"
@@ -16,7 +16,9 @@ androidx-espresso-core = "3.5.1"
 coroutinesVersion = "1.7.3"
 kotlin = "1.9.20"
 junit = "4.13.2"
-ktorVersion = "2.3.5"
+
+ktorVersion = "3.0.0-wasm1"
+
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -36,9 +38,12 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktorVersion" }
+ktor-client-apache5 = { module = "io.ktor:ktor-client-apache5", version.ref = "ktorVersion" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorVersion"}
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorVersion" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorVersion" }
 ktor-client-desktop = { module = "io.ktor:ktor-client-desktop", version.ref = "ktorVersion" }
+ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktorVersion" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorVersion" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorVersion" }
 

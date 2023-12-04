@@ -1,3 +1,3 @@
 package ru.yas.link_shortener.database.links
 
-data class LinkRespond()
+data class PostLink(val link: String)

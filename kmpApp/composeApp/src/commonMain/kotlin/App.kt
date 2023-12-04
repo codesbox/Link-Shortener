@@ -18,13 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import data.PostNewLink
 import data.models.LinkModel
+import io.ktor.client.HttpClient
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun App() {
+fun App(httpClient: HttpClient) {
     var s by remember {
         mutableStateOf("")
     }
@@ -44,7 +45,7 @@ fun App() {
                     val q = rememberCoroutineScope()
                     Button(onClick = {
                         q.launch {
-                            s = PostNewLink.post(LinkModel(text)).link
+                            s = PostNewLink.post(LinkModel(text), httpClient).link
                         }
                     }){
                         Text("Сократить")

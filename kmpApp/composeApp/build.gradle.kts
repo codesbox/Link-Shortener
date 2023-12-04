@@ -1,5 +1,7 @@
+
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -18,11 +20,23 @@ kotlin {
     }
     
     jvm("desktop")
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        moduleName = "composeApp"
+        browser {
+            commonWebpackConfig {
+                outputFileName = "composeApp.js"
+            }
+        }
+        binaries.executable()
+    }
+
+
     
     sourceSets {
-        val ktor_version = "2.3.5"
-        val coroutinesVersion = "1.7.3"
         val desktopMain by getting
+        val wasmJsMain by getting
         
         androidMain.dependencies {
             implementation(libs.compose.ui)
@@ -30,10 +44,11 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.android)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.ktor.client.okhttp)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
-
+            implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.core)
         }
         commonMain.dependencies {
@@ -48,9 +63,10 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.ktor.client.okhttp)
-
             implementation(libs.kotlinx.coroutines.core)
+        }
+        wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
         }
     }
 }
@@ -105,4 +121,8 @@ compose.desktop {
             packageVersion = "1.0.0"
         }
     }
+}
+
+compose.experimental {
+    web.application {}
 }
