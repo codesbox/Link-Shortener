@@ -20,7 +20,7 @@ kotlin {
     jvm("desktop")
     
     sourceSets {
-        val ktorVersion = "2.3.5"
+        val ktor_version = "2.3.5"
         val coroutinesVersion = "1.7.3"
         val desktopMain by getting
         
@@ -33,7 +33,7 @@ kotlin {
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
-            implementation(libs.ktor.client.desktop)
+
             implementation(libs.kotlinx.coroutines.core)
         }
         commonMain.dependencies {
@@ -48,6 +48,7 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.okhttp)
 
             implementation(libs.kotlinx.coroutines.core)
         }
